@@ -83,6 +83,8 @@ $(document).ready(function() {
 // ---------- first-level functions (called by main) ---------- //
 // Todo: create a function to render the task list and make cards draggable
 function renderTaskList() {
+    const tasks = readTasksFromStorage();
+
     // clear current data in card lanes
     const todoList = $("#todo-cards");
     todoList.empty();
@@ -93,25 +95,28 @@ function renderTaskList() {
     const doneList = $("done-cards");
     doneList.empty();
 
-    // add data from tasklist
-    createTaskCard()
-
     // assign card to correct lane depending on status
-    if (taskList.length !== 0) {
-        for (let task of taskList) {
-            const taskCard = createTaskCard(task);
-            switch (task.status) {
-                case "to-do":
-                    todoList.append(taskCard);
-                    break;
-                case "in-progress":
-                    inProgressList.append(taskCard);
-                    break;
-                case "done":
-                    doneList.append(taskCard)
-            };
-        };
-    }
+    for (let task of tasks) {
+        const taskCard = createTaskCard(task);
+        if (task.status === "to-do") {
+            todoList.append(taskCard);
+        } else if (task.status === "in-progress") {
+            inProgressList.append(taskCard);
+        } else if (task.status === "done") {
+            doneList.append(taskCard);
+        }
+    
+        // switch (task.status) {
+        //     case "to-do":
+        //         todoList.append(taskCard);
+        //         break;
+        //     case "in-progress":
+        //         inProgressList.append(taskCard);
+        //         break;
+        //     case "done":
+        //         doneList.append(taskCard)
+        // };
+    };
 
     $(".draggable").draggable({
         opacity:0.7,
@@ -182,35 +187,37 @@ function handleDrop(event, ui) {
 
 // ---------- second-level functions (called by other functions) ---------- //
 // Todo: create a function to create a task card
-function createTaskCard(task) {
+function createTaskCard(task) { 
     // create the elements of the card: task name, due date, and description
     const taskCard = $("<div>");
     taskCard.addClass("card task-card draggable my-3");
     taskCard.attr("data-task-id", task.id);
-    const cardHeader = $("<div>").addClass("card-header").text(task.taskTitle);
+    const cardHeader = $("<div>").addClass("card-header h4").text(task.title);
     const cardBody = $("<div>").addClass("card-body");
-    const cardDueDate = $("<p>").addClass("card-text").text(task.taskDueDate);
-    const cardDescription = $("<p>").addClass("card-text").text(task.taskDescription);
+    const cardDueDate = $("<p>").addClass("card-text").text(task.dueDate);
+    const cardDescription = $("<p>").addClass("card-text").text(task.description);
     const cardDeleteBtn = $()
         .addClass("btn btn-outline-danger")
         .text("Delete")
         .attr("data-task-id, task.id");
-    if (task.dueDate && task.status !== 'done') {
+
+    // set card background color based on date
+        if (task.dueDate && task.status !== 'done') {
         const now = dayjs();
         const taskDueDate = dayjs(task.dueDate, 'DD/MM/YYYY');
-    
+
         // If the task is due today, make the card yellow. If it is overdue, make it red.
         if (now.isSame(taskDueDate, 'day')) {
-          taskCard.addClass('bg-warning text-white');
+            taskCard.addClass('bg-warning text-white');
         } else if (now.isAfter(taskDueDate)) {
-          taskCard.addClass('bg-danger text-white');
-          cardDeleteBtn.addClass('border-light');
+            taskCard.addClass('bg-danger text-white');
+            cardDeleteBtn.addClass('border-light');
         }
     }
 
-    cardBody.append(cardDescription, cardDueDate, cardDeleteBtn);
+    cardBody.append(cardDueDate, cardDescription, cardDeleteBtn);
     taskCard.append(cardHeader, cardBody);
-
+    console.log(taskCard)
     return taskCard;
 }
 // ---------- utility functions (called repeatedly ---------- //
