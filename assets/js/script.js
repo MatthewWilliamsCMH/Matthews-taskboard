@@ -196,24 +196,22 @@ function createTaskCard(task) {
     const cardBody = $("<div>").addClass("card-body");
     const cardDueDate = $("<p>").addClass("card-text").text(task.dueDate);
     const cardDescription = $("<p>").addClass("card-text").text(task.description);
-    const cardDeleteBtn = $("<button>")
-        .addClass("btn btn-outline-danger")
-        .text("Delete")
-        // why do we assign the id to the button?
-        .attr("data-task-id", task.id);
-    // set card background color based on date
-    // if (task.dueDate && task.status !== 'done') {
-    //     const now = dayjs();
-    //     const taskDueDate = dayjs(task.dueDate, 'DD/MM/YYYY');
+    // why do we assign the id to the button in the line below?
+    const cardDeleteBtn = $("<button>").addClass("btn btn-outline-danger").text("Delete").attr("data-task-id", task.id);
+        
+        // set card background color based on date
+        if (task.dueDate && task.status !== 'done') {
+            const now = dayjs();
+            const taskDueDate = dayjs(task.dueDate, 'DD/MM/YYYY');
 
-    //     // If the task is due today, make the card yellow. If it is overdue, make it red.
-    //     if (now.isSame(taskDueDate, 'day')) {
-    //         taskCard.addClass('bg-warning text-white');
-    //     } else if (now.isAfter(taskDueDate)) {
-    //         taskCard.addClass('bg-danger text-white');
-    //         cardDeleteBtn.addClass('border-light');
-    //     }
-    // }
+            // If the task is due today, make the card yellow. If it is overdue, make it red.
+            if (now.isSame(taskDueDate, 'day')) {
+                taskCard.addClass('bg-warning text-white');
+            } else if (now.isAfter(taskDueDate)) {
+                taskCard.addClass('bg-danger text-white');
+                cardDeleteBtn.addClass('border-light');
+            }
+        }
 
     cardBody.append(cardDueDate, cardDescription, cardDeleteBtn);
     taskCard.append(cardHeader, cardBody);
