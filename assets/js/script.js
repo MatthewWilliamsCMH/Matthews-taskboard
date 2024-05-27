@@ -84,7 +84,6 @@ $(document).ready(function() {
 // Todo: create a function to render the task list and make cards draggable
 function renderTaskList() {
     const tasks = readTasksFromStorage();
-
     // clear current data in card lanes
     const todoList = $("#todo-cards");
     todoList.empty();
@@ -96,8 +95,9 @@ function renderTaskList() {
     doneList.empty();
 
     // assign card to correct lane depending on status
-    for (let task of tasks) {
+    for (let task of taskList) {
         const taskCard = createTaskCard(task);
+
         if (task.status === "to-do") {
             todoList.append(taskCard);
         } else if (task.status === "in-progress") {
@@ -200,36 +200,30 @@ function createTaskCard(task) {
         .addClass("btn btn-outline-danger")
         .text("Delete")
         .attr("data-task-id, task.id");
-
     // set card background color based on date
-        if (task.dueDate && task.status !== 'done') {
-        const now = dayjs();
-        const taskDueDate = dayjs(task.dueDate, 'DD/MM/YYYY');
+    // if (task.dueDate && task.status !== 'done') {
+    //     const now = dayjs();
+    //     const taskDueDate = dayjs(task.dueDate, 'DD/MM/YYYY');
 
-        // If the task is due today, make the card yellow. If it is overdue, make it red.
-        if (now.isSame(taskDueDate, 'day')) {
-            taskCard.addClass('bg-warning text-white');
-        } else if (now.isAfter(taskDueDate)) {
-            taskCard.addClass('bg-danger text-white');
-            cardDeleteBtn.addClass('border-light');
-        }
-    }
+    //     // If the task is due today, make the card yellow. If it is overdue, make it red.
+    //     if (now.isSame(taskDueDate, 'day')) {
+    //         taskCard.addClass('bg-warning text-white');
+    //     } else if (now.isAfter(taskDueDate)) {
+    //         taskCard.addClass('bg-danger text-white');
+    //         cardDeleteBtn.addClass('border-light');
+    //     }
+    // }
+    console.log(taskCard)
 
     cardBody.append(cardDueDate, cardDescription, cardDeleteBtn);
     taskCard.append(cardHeader, cardBody);
-    console.log(taskCard)
     return taskCard;
 }
 // ---------- utility functions (called repeatedly ---------- //
 // read from localStorage
 function readTasksFromStorage() {
-    let tasks = JSON.parse(localStorage.getItem("tasks"));
-
-    if (!tasks) {
-        tasks = [];
-    };
-
-    return tasks;
+    taskList = JSON.parse(localStorage.getItem("tasks")) || [];
+    return taskList;
 }
 
 // save to localStorage
