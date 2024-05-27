@@ -190,16 +190,17 @@ function handleDrop(event, ui) {
 function createTaskCard(task) { 
     // create the elements of the card: task name, due date, and description
     const taskCard = $("<div>");
-    taskCard.addClass("card task-card draggable my-3");
+    taskCard.addClass("task-card task-card:hover draggable my-3");
     taskCard.attr("data-task-id", task.id);
     const cardHeader = $("<div>").addClass("card-header h4").text(task.title);
     const cardBody = $("<div>").addClass("card-body");
     const cardDueDate = $("<p>").addClass("card-text").text(task.dueDate);
     const cardDescription = $("<p>").addClass("card-text").text(task.description);
-    const cardDeleteBtn = $()
+    const cardDeleteBtn = $("<button>")
         .addClass("btn btn-outline-danger")
         .text("Delete")
-        .attr("data-task-id, task.id");
+        // why do we assign the id to the button?
+        .attr("data-task-id", task.id);
     // set card background color based on date
     // if (task.dueDate && task.status !== 'done') {
     //     const now = dayjs();
@@ -213,7 +214,6 @@ function createTaskCard(task) {
     //         cardDeleteBtn.addClass('border-light');
     //     }
     // }
-    console.log(taskCard)
 
     cardBody.append(cardDueDate, cardDescription, cardDeleteBtn);
     taskCard.append(cardHeader, cardBody);
