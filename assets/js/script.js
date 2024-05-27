@@ -63,6 +63,7 @@ $(document).ready(function() {
 
     // show the dialog box when the add-task button on the main page is clicked
     // HERE. THE LINE BELOW IS THROWING THE ERROR
+    // something wrong with the way the input dialog is being generated
     $("#add-task").on("click", function() {
         dialog.dialog("open");
     })
@@ -105,17 +106,6 @@ function renderTaskList() {
         } else if (task.status === "done") {
             doneList.append(taskCard);
         }
-    
-        // switch (task.status) {
-        //     case "to-do":
-        //         todoList.append(taskCard);
-        //         break;
-        //     case "in-progress":
-        //         inProgressList.append(taskCard);
-        //         break;
-        //     case "done":
-        //         doneList.append(taskCard)
-        // };
     };
 
     $(".draggable").draggable({
@@ -134,19 +124,13 @@ function renderTaskList() {
 
 // Todo: create a function to handle adding a new task
 function handleAddTask(){
-    // event.preventDefault();
     // assign task-value inputs to task-value variables
-    // need to generate modal dialog; not sure where it's getting built
-
     const taskTitle = taskTitleInputEl.val();
     const taskDueDate = taskDueDateInputEl.val();
     const taskDescription = taskDescriptionInputEl.val();
 
-    // generates id for card and then assigns it to the card
-    // const taskID = generateTaskId(uuid);
-  
     // write task-value variables to new task array
-    myTask = {
+    const myTask = {
         id: generateTaskId(),
         title: taskTitle,
         dueDate: taskDueDate,
@@ -182,7 +166,17 @@ function generateTaskId() {
 
 // Todo: create a function to handle dropping a task into a new status lane
 function handleDrop(event, ui) {
-
+    $( function() {
+        $( "#draggable" ).draggable();
+        $( "#droppable" ).droppable({
+          drop: function( event, ui ) {
+            $( this )
+              .addClass( "ui-state-highlight" )
+              .find( "p" )
+                .html( "Dropped!" );
+          }
+        });
+      } );
 }
 
 // ---------- second-level functions (called by other functions) ---------- //
@@ -206,10 +200,10 @@ function createTaskCard(task) {
 
             // If the task is due today, make the card yellow. If it is overdue, make it red.
             if (now.isSame(taskDueDate, 'day')) {
-                taskCard.addClass('bg-warning text-white');
+                taskCard.addClass('bg-warning text-black');
             } else if (now.isAfter(taskDueDate)) {
                 taskCard.addClass('bg-danger text-white');
-                cardDeleteBtn.addClass('border-light');
+                cardDeleteBtn.addClass('border-light text-white');
             }
         }
 
@@ -229,6 +223,7 @@ function saveTasksToStorage(tasks) {
     const tasksStr = JSON.stringify(tasks)
     localStorage.setItem("tasks", tasksStr)
 }
+
 
 
 
