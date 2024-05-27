@@ -56,6 +56,7 @@ $(document).ready(function() {
         buttons: {
             "Save Task": function() {
                 $(this).dialog("close");
+                handleAddTask();
             }
         }
     });
@@ -64,7 +65,6 @@ $(document).ready(function() {
     // HERE. THE LINE BELOW IS THROWING THE ERROR
     $("#add-task").on("click", function() {
         dialog.dialog("open");
-        handleAddTask();
     })
     
     //make lanes droppable
@@ -138,10 +138,6 @@ function handleAddTask(){
     // assign task-value inputs to task-value variables
     // need to generate modal dialog; not sure where it's getting built
 
-    if (taskTitleInputEl.val() === "" || taskDueDateInputEl.val() === "" || taskDescriptionInputEl.val() ===""){
-        alert("Please complete all fields.")
-        return;
-    }
     const taskTitle = taskTitleInputEl.val();
     const taskDueDate = taskDueDateInputEl.val();
     const taskDescription = taskDescriptionInputEl.val();
@@ -160,7 +156,7 @@ function handleAddTask(){
 
     // retrive localStorage, push new task to the array, and save new tasks string
     const tasks = readTasksFromStorage();
-    tasks.push(myTask);
+    tasks.unshift(myTask);
     saveTasksToStorage(tasks);
 
     renderTaskList();
@@ -170,8 +166,12 @@ function handleAddTask(){
     taskDueDateInputEl.val("")
     taskDescriptionInputEl.val("")
 
-    $("submit").on("submit", function() {
- }) 
+    // $("submit").on("submit", function() {
+    //     if (taskTitleInputEl.val() === "" || taskDueDateInputEl.val() === "" || taskDescriptionInputEl.val() ===""){
+    //         alert("Please complete all fields.")
+    //         return;
+    //     }
+    //  }) 
 }
 
 // Todo: create a function to generate a unique task id
@@ -249,4 +249,3 @@ function saveTasksToStorage(tasks) {
  function handleDeleteTask(event){
 
 }
-
