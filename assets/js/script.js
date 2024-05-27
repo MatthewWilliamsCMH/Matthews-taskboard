@@ -148,7 +148,7 @@ function handleAddTask(){
     // write task-value variables to new task array
     myTask = {
         id: generateTaskId(),
-        name: taskTitle,
+        title: taskTitle,
         dueDate: taskDueDate,
         description: taskDescription,
         status: "to-do",
