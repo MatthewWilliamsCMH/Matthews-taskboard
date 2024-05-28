@@ -10,19 +10,21 @@
     integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
   <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
-
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Handlee&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./assets/css/style.css" />
   <title>Task Board</title>
 </head>
 
 <body>
-  <header class="p-4 mb-4 text-center border-bottom border-5">
-    <h1 class="display-3">Task Board</h1>
-    <p class="lead">A simple Kanban board for task management</p>
+  <header class="p-4 mb-4 text-center border-bottom border-2 border-dark" style="max-width:50%; left:0; right:0; margin:auto;">
+    <h1 class="display-3 abril-fatface-regular">Task Board</h1>
+    <p class="display-6" style="font-family:handlee, cursive">A Simple Kanban Board for Task Management</p>
   </header>
   <div class="container">
     <div class="text-center mb-5">
-      <button id="add-task" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#formModal">Add Task</button>
+      <button id="add-task" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#formModal" style="font-size:2rem;">Add Task</button>
     </div>
     <!-- Todo: Create a modal with a form to add tasks -->
     <!-- add bootstap classes to line below to format dialog -->
@@ -42,8 +44,8 @@
      
     <div class="row swim-lanes text-center justify-content-between">
       <div class="col-12 col-lg-4 d-flex">
-        <div id="to-do" class="card border-light mb-3 lane flex-grow-1 droppable">
-          <div class="card-header bg-white">
+        <div id="to-do" class="card border-dark-subtle border-3 mb-3 lane flex-grow-1 droppable">
+          <div class="card-header">
             <h2 class="card-title mb-1">To Do</h2>
           </div>
           <div class="card-body bg-light">
@@ -53,7 +55,7 @@
       </div>
       <div class="col-12 col-lg-4 d-flex">
         <div id="in-progress" class="card border-light mb-3 lane flex-grow-1 droppable">
-          <div class="card-header bg-white">
+          <div class="card-header">
             <h2 class="card-title mb-1">In Progress</h2>
           </div>
           <div class="card-body bg-light">
@@ -63,7 +65,7 @@
         </div>
         <div class="col-12 col-lg-4 d-flex">
           <div id="done" class="card border-light mb-3 lane flex-grow-1 droppable">
-            <div class="card-header bg-white">
+            <div class="card-header">
               <h2 class="card-title mb-1">Done</h2>
             </div>
             <div class="card-body bg-light">

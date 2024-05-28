@@ -30,7 +30,7 @@ function createTaskCard(task) {
     const taskCard = $("<div>");
     taskCard.addClass("task-card task-card:hover draggable my-3");
     taskCard.attr("data-task-id", task.id);
-    const cardHeader = $("<div>").addClass("card-header h4").text(task.title);
+    const cardHeader = $("<div>").addClass("card-title h2").text(task.title);
     const cardBody = $("<div>").addClass("card-body");
     const cardDueDate = $("<p>").addClass("card-text").text(task.dueDate);
     const cardDescription = $("<p>").addClass("card-text").text(task.description);
@@ -48,6 +48,7 @@ function createTaskCard(task) {
             } else if (now.isAfter(taskDueDate)) {
                 taskCard.addClass("bg-danger text-white");
                 cardDeleteBtn.addClass("border-light text-white");
+        
             }
         }
 
