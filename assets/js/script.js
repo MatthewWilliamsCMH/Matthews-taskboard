@@ -1,5 +1,5 @@
 //connect variables to input elements on html form
-const taskDisplayEl = $("task-display")
+const taskCardEl = $(".task-card");
 const taskFormEL = $("#task-form");
 const taskTitleInputEl = $("#task-title-input");
 const taskDueDateInputEl = $("#task-due-date-input");
@@ -39,6 +39,7 @@ function createTaskCard(task) {
     const cardDescription = $("<p>").addClass("card-text").text(task.description);
     // why do we assign the id to the button in the line below?
     const cardDeleteBtn = $("<button>").addClass("btn btn-outline-danger").text("Delete").attr("data-task-id", task.id);
+    cardDeleteBtn.on("click", handleDeleteTask);
         
         // set card background color based on date
         if (task.dueDate && task.status !== 'done') {
@@ -100,24 +101,22 @@ function renderTaskList() {
 }
 
 // Todo: create a function to handle deleting a task
-function handleDeleteTask(event){
+function handleDeleteTask(){
+    const taskId = $(this).attr("data-task-id");
     const tasks = readTasksFromStorage();
-    const taskId = $(this).attr('data-task-id');
   
-    for (let task of tasks) {
-      if (task.task-id === taskID) {
-        task.remove
-      }
-    }
+    tasks.forEach((task) => {
+        if (task.id === taskId) {
+            tasks.splice(tasks.indexOf(task), 1);
+        }
+    });
 
-    saveProjectsToStorage(tasks);
+    saveTasksToStorage(tasks);
     renderTaskList();
 }
 
 // Todo: create a function to handle adding a new task
 function handleAddTask(event){
-    // event.preventDefault();
-
     const taskTitle = taskTitleInputEl.val();
     const taskDueDate = taskDueDateInputEl.val();
     const taskDescription = taskDescriptionInputEl.val();
@@ -151,6 +150,7 @@ function handleAddTask(event){
 // Todo: create a function to handle dropping a task into a new status lane
 function handleDrop(event, ui) {
     const tasks = readTasksFromStorage();
+
     // identify which card was dragged
     const taskId = ui.draggable[0].dataset.taskId;
 
@@ -170,8 +170,10 @@ function handleDrop(event, ui) {
 // event listener for submit event on form
 taskFormEl.on('submit', handleAddTask);
 
-// event listener for submit click event on delete button
-taskDisplayEl.on("click", handleDeleteTask);
+// event listener for click event on card delete button
+taskCardEl.on("click", function(event) {
+    if(event.target.tagName === "card-body") {
+    handleDeleteTask}});
 
 
 // --------- main ---------- //
