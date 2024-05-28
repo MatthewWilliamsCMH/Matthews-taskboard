@@ -14,9 +14,9 @@ function readTasksFromStorage() {
 
 // save to localStorage
 function saveTasksToStorage(tasks) {
-    const tasksStr = JSON.stringify(tasks)
-    localStorage.setItem("tasks", tasksStr)
-}
+    const tasksStr = JSON.stringify(tasks);
+    localStorage.setItem("tasks", tasksStr);
+};
 
 // Todo: create a function to generate a unique task id
 function generateTaskId() {
@@ -48,7 +48,6 @@ function createTaskCard(task) {
             } else if (now.isAfter(taskDueDate)) {
                 taskCard.addClass("bg-danger text-white");
                 cardDeleteBtn.addClass("border-light text-white");
-        
             }
         }
 
@@ -131,16 +130,9 @@ function handleAddTask(event){
     saveTasksToStorage(tasks);
     renderTaskList();
 
-    taskTitleInputEl.val("")
-    taskDueDateInputEl.val("")
-    taskDescriptionInputEl.val("")
-
-    // $("submit").on("submit", function() {
-    //     if (taskTitleInputEl.val() === "" || taskDueDateInputEl.val() === "" || taskDescriptionInputEl.val() ===""){
-    //         alert("Please complete all fields.")
-    //         return;
-    //     }
-    //  }) 
+    taskTitleInputEl.val("");
+    taskDueDateInputEl.val("");
+    taskDescriptionInputEl.val("");
 }
 
 // Todo: create a function to handle dropping a task into a new status lane
@@ -158,7 +150,7 @@ function handleDrop(event, ui) {
         if (task.id === taskId) {
             task.status = newStatus;
         }
-    }
+    };
     saveTasksToStorage(tasks);
     renderTaskList();
 }
@@ -171,17 +163,14 @@ taskCardEl.on("click", function(event) {
     if(event.target.tagName === "card-body") {
     handleDeleteTask}});
 
-
-// --------- main ---------- //
-// Todo: when the page loads, render the task list, add event listeners, 
-// make lanes droppable, and make the due date field a date picker
+// ------------------- main -------------------- //
+// Todo: when the page loads, render the task list, add event listeners, make lanes droppable, and make the due date field a date picker
 $(document).ready(function() {
     if (tasks.length !== 0) {
         renderTaskList();
     };
 
-    // create the dialog box using the jQuery UI dialog widget but don't show it yet
-    //make lanes droppable
+    // create the dialog box using the jQuery UI dialog widget but don't show it yet make lanes droppable
     $('.lane').droppable({
         accept: ".draggable",
         drop: handleDrop,
@@ -199,8 +188,13 @@ $(document).ready(function() {
         modal: true,
         buttons: {
             "Save Task": function() {
-                $(this).dialog("close");
-                handleAddTask();
+                if (taskTitleInputEl.val() === "" || taskDueDateInputEl.val() === "" || taskDescriptionInputEl.val() === "") {
+                    alert("Please complete all fields.");
+                    return;
+                } else {
+                    $(this).dialog("close");
+                    handleAddTask();
+                }
             }
         }
     });
