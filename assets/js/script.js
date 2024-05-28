@@ -101,10 +101,10 @@ function renderTaskList() {
 
 // Todo: create a function to handle deleting a task
 function handleDeleteTask(event){
+    const tasks = readTasksFromStorage();
     const taskId = $(this).attr('data-task-id');
-    const tasks = readtasksFromStorage();
   
-    for (let task in tasks) {
+    for (let task of tasks) {
       if (task.task-id === taskID) {
         task.remove
       }
@@ -163,9 +163,6 @@ function handleDrop(event, ui) {
             task.status = newStatus;
         }
     }
-    // the line below should be the same as (and replaceable by) the line below it
-    // but for debugging purposes, I'll use it
-    // saveTasksToStorage(tasks);
     saveTasksToStorage(tasks);
     renderTaskList();
 }
@@ -185,7 +182,7 @@ $(document).ready(function() {
         renderTaskList();
     };
 
-        // create the dialog box using the jQuery UI dialog widget but don't show it yet
+    // create the dialog box using the jQuery UI dialog widget but don't show it yet
     //make lanes droppable
     $('.lane').droppable({
         accept: ".draggable",
@@ -193,7 +190,7 @@ $(document).ready(function() {
     });
 
     //make date input datepicker
-    $("#taskDueDate").datepicker ({
+    $("#task-due-date-input").datepicker ({
         changeMonth: true,
         changeYear: true,
     });
