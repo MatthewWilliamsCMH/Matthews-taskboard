@@ -1,13 +1,10 @@
 //connect variables to input elements on html form
 const taskCardEl = $(".task-card");
-const taskFormEL = $("#task-form");
 const taskTitleInputEl = $("#task-title-input");
 const taskDueDateInputEl = $("#task-due-date-input");
 const taskDescriptionInputEl = $("#task-description-input");
-const taskFormEl = $("task-form");
+const taskFormEl = $("#task-form");
 let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
-// not sure why this is necessary
-let nextId = JSON.parse(localStorage.getItem("nextId"));
 let uuid = "";
 
 function readTasksFromStorage() {
@@ -37,7 +34,6 @@ function createTaskCard(task) {
     const cardBody = $("<div>").addClass("card-body");
     const cardDueDate = $("<p>").addClass("card-text").text(task.dueDate);
     const cardDescription = $("<p>").addClass("card-text").text(task.description);
-    // why do we assign the id to the button in the line below?
     const cardDeleteBtn = $("<button>").addClass("btn btn-outline-danger").text("Delete").attr("data-task-id", task.id);
     cardDeleteBtn.on("click", handleDeleteTask);
         
@@ -88,7 +84,6 @@ function renderTaskList() {
 
     $(".draggable").draggable({
         opacity:0.7,
-        // zIndex:100,
         helper: function(e) {
             const original = $(e.target).hasClass("ui-draggable")
                 ? $(e.target)
@@ -210,8 +205,6 @@ $(document).ready(function() {
     });
 
     // show the dialog box when the add-task button on the main page is clicked
-    // HERE. THE LINE BELOW IS THROWING THE ERROR
-    // something wrong with the way the input dialog is being generated
     $("#add-task").on("click", function() {
         dialog.dialog("open");
     });
