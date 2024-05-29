@@ -26,16 +26,22 @@
     </div>
     <!-- Todo: Create a modal with a form to add tasks -->
     <div id="task-form" title="Create new task">
-      <form class="task-form">
+      <form>
+        <div class="column">
           <label for="task-title-input">Task Title: 
             <input type="text" name="taskTitle" id="task-title-input"  class="inputs text ui-widget-content ui-corner-all">
           </label>
+        </div>
+        <div class="column">
           <label for="task-due-date-input">Due Date: 
             <input type="text" name="taskDueDate" id="task-due-date-input"  class="inputs text ui-widget-content ui-corner-all">
           </label>
+        </div>
+        <div>
           <label for="task-description-input">Description: 
-            <input type="text" name="taskDescription" id="task-description-input" class="inputs text ui-widget-content ui-corner-all">
+            <textarea name="taskDescription" id="task-description-input" class="inputs text ui-widget-content ui-corner-all"></textarea>
           </label>
+        </div>
           <!-- Allow form submission with keyboard without duplicating the dialog button -->
           <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
       </form>

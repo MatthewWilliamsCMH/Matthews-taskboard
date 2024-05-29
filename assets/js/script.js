@@ -187,11 +187,11 @@ $(document).ready(function() {
     });
 
     // creates the dialog box for user input
-    dialog = $("#task-form").dialog({
+    let dialog = $("#task-form").dialog({
         autoOpen: false,
         modal: true,
         minWidth:500,
-        closeText: "X",
+        classes: {"ui-dialog": "input-dialog"},
         buttons: {
             "Save Task": function() {
                 if (taskTitleInputEl.val() === "" || taskDueDateInputEl.val() === "" || taskDescriptionInputEl.val() === "") {
