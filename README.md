@@ -8,7 +8,7 @@ Matthew's Task Board is a simple web app for recording and tracking tasks.
 Matthew's Task Board requires no installation.
 
 ## Usage
-A screen shot of the form page of Matthew's Blog is presented below. To link to the blog, click [here](https://matthewwilliamscmh.github.io/matthews-task-board/index.html).
+A screen shot of the form page of Matthew's Blog is presented below. To link to the task board, click [here](https://matthewwilliamscmh.github.io/matthews-task-board/index.html).
 
 ![Matthew's Task Board landing page](./assets/matthews-task-board.jpg).
 
