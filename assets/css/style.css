@@ -13,6 +13,7 @@
 body {
   font-family: Arial, Helvetica, sans-serif, sans-serif;
   font-size: 16px;
+  background-color:rgb(252, 249, 234)
 }
 
 .swim-lanes {
@@ -36,7 +37,7 @@ body {
   cursor: grab;
 }
 
-.task-form {
+#task-form {
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -60,9 +61,9 @@ body {
   background-color: rgb(163, 11, 11);
 }
 
-.highlight {
+.highlight:hover {
   /* Add styles to highlight the lane */
-  background-color: peachpuff;
+  box-shadow:0 0 10px orangered;
 }
 
 h2 {
@@ -74,7 +75,9 @@ h2 {
 }
 
 .card-title {
-  font-family:"Handlee", script;
+  font-family:"Handlee", cursive;
+  font-synthesis:weight;
+  font-weight:900;
 }
 
 .card-body {

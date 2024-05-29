@@ -6,9 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous" />
   <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,19 +22,20 @@
   </header>
   <div class="container">
     <div class="text-center mb-5">
-      <button id="add-task" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#formModal" style="font-size:2rem;">Add Task</button>
+      <button id="add-task" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#formModal" style="font-size:1.75rem;">Add Task</button>
     </div>
     <!-- Todo: Create a modal with a form to add tasks -->
-    <!-- add bootstap classes to line below to format dialog -->
-    <div id="task-form" class="task-form" title="Create new task">
-      <form>
-          <label for="task-title-input">Task Title: </label>
-          <input type="text" name="taskTitle" id="task-title-input"  class="inputs text ui-widget-content ui-corner-all">
-          <label for="task-due-date-input">Due Date: </label>
-          <input type="text" name="taskDueDate" id="task-due-date-input"  class="inputs text ui-widget-content ui-corner-all">
-          <label for="task-description-input">Description: </label>
-          <input type="text" name="taskDescription" id="task-description-input" class="inputs text ui-widget-content ui-corner-all">
-     
+    <div id="task-form" title="Create new task">
+      <form class="task-form">
+          <label for="task-title-input">Task Title: 
+            <input type="text" name="taskTitle" id="task-title-input"  class="inputs text ui-widget-content ui-corner-all">
+          </label>
+          <label for="task-due-date-input">Due Date: 
+            <input type="text" name="taskDueDate" id="task-due-date-input"  class="inputs text ui-widget-content ui-corner-all">
+          </label>
+          <label for="task-description-input">Description: 
+            <input type="text" name="taskDescription" id="task-description-input" class="inputs text ui-widget-content ui-corner-all">
+          </label>
           <!-- Allow form submission with keyboard without duplicating the dialog button -->
           <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
       </form>
@@ -44,7 +43,7 @@
      
     <div class="row swim-lanes text-center justify-content-between">
       <div class="col-12 col-lg-4 d-flex">
-        <div id="to-do" class="card border-dark-subtle border-3 mb-3 lane flex-grow-1 droppable">
+        <div id="to-do" class="card border-dark-subtle border-3 mb-3 flex-grow-1 droppable lane highlight">
           <div class="card-header">
             <h2 class="card-title mb-1">To Do</h2>
           </div>
@@ -54,7 +53,7 @@
         </div>
       </div>
       <div class="col-12 col-lg-4 d-flex">
-        <div id="in-progress" class="card border-dark-subtle border-3 mb-3 lane flex-grow-1 droppable">
+        <div id="in-progress" class="card border-dark-subtle border-3 mb-3 flex-grow-1 droppable lane highlight">
           <div class="card-header">
             <h2 class="card-title mb-1">In Progress</h2>
           </div>
@@ -64,7 +63,7 @@
         </div>
         </div>
         <div class="col-12 col-lg-4 d-flex">
-          <div id="done" class="card border-dark-subtle border-3 mb-3 lane flex-grow-1 droppable">
+          <div id="done" class="card border-dark-subtle border-3 mb-3 flex-grow-1 droppable lane highlight">
             <div class="card-header">
               <h2 class="card-title mb-1">Done</h2>
             </div>
