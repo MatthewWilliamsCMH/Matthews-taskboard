@@ -166,6 +166,10 @@ taskCardEl.on("click", function(event) {
 // ------------------- main -------------------- //
 // Todo: when the page loads, render the task list, add event listeners, make lanes droppable, and make the due date field a date picker
 $(document).ready(function() {
+    var bootstrapButton = $.fn.button.noConflict()
+    $.fn.bootstrapBtn = bootstrapButton;
+
+
     if (tasks.length !== 0) {
         renderTaskList();
     };
@@ -186,6 +190,8 @@ $(document).ready(function() {
     dialog = $("#task-form").dialog({
         autoOpen: false,
         modal: true,
+        minWidth:500,
+        closeText: "X",
         buttons: {
             "Save Task": function() {
                 if (taskTitleInputEl.val() === "" || taskDueDateInputEl.val() === "" || taskDescriptionInputEl.val() === "") {
