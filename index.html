@@ -31,22 +31,17 @@
           <label for="task-title-input">Task Title: 
             <input type="text" name="taskTitle" id="task-title-input"  class="inputs text ui-widget-content ui-corner-all">
           </label>
-        </div>
-        <div class="column">
           <label for="task-due-date-input">Due Date: 
             <input type="text" name="taskDueDate" id="task-due-date-input"  class="inputs text ui-widget-content ui-corner-all">
           </label>
         </div>
-        <div>
-          <label for="task-description-input">Description: 
-            <textarea name="taskDescription" id="task-description-input" class="inputs text ui-widget-content ui-corner-all"></textarea>
-          </label>
-        </div>
-          <!-- Allow form submission with keyboard without duplicating the dialog button -->
-          <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+        <label for="task-description-input">Description: </label>
+        <textarea  style="width:100%;" name="taskDescription" id="task-description-input" class="inputs text ui-widget-content ui-corner-all"></textarea>
+        <!-- Allow form submission with keyboard without duplicating the dialog button -->
+        <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
       </form>
     </div>
-     
+    <!-- build the progress lanes -->
     <div class="row swim-lanes text-center justify-content-between">
       <div class="col-12 col-lg-4 d-flex">
         <div id="to-do" class="card border-dark-subtle border-3 mb-3 flex-grow-1 droppable lane highlight">

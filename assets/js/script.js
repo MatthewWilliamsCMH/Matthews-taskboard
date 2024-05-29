@@ -191,7 +191,6 @@ $(document).ready(function() {
         autoOpen: false,
         modal: true,
         minWidth:500,
-        classes: {"ui-dialog": "input-dialog"},
         buttons: {
             "Save Task": function() {
                 if (taskTitleInputEl.val() === "" || taskDueDateInputEl.val() === "" || taskDescriptionInputEl.val() === "") {

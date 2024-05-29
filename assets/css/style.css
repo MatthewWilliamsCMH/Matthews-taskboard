@@ -1,3 +1,4 @@
+/* ---------- globals ---------- */
 .abril-fatface-regular {
   font-family: "Abril Fatface", serif;
   font-weight: 400;
@@ -16,10 +17,22 @@ body {
   background-color:rgb(252, 249, 234)
 }
 
+/* ---------- lane handling ---------- */
 .swim-lanes {
   min-height: 60vh;
 }
 
+.highlight:hover {
+  /* Add styles to highlight the lane */
+  box-shadow:0 0 10px orangered;
+}
+
+h2 {
+  color:white;
+  margin-top:5px;
+}
+
+/* ---------- card handling ---------- */
 .task-card {
   margin: 0 auto;
   display: flex;
@@ -41,14 +54,23 @@ body {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  font-size:1.25rem;
 }
 
 .column {
-  display:inline-flex;
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:10px;
+}
+
+#task-description-input {
+  display:block;
+  width:100%;
 }
 
 .inputs{
   display: flex;
+  border:1px solid black;
 }
 
 #todo-cards{
@@ -63,15 +85,6 @@ body {
 
 .late{
   background-color: rgb(163, 11, 11);
-}
-
-.highlight:hover {
-  /* Add styles to highlight the lane */
-  box-shadow:0 0 10px orangered;
-}
-
-h2 {
-  color:white;
 }
 
 .card-header {
